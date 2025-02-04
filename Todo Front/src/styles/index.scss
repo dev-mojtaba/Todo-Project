@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root & Variables */
+@import url(./root.scss);
+
+/* Common */
+// Font Faces
+@import url(./common/font.scss);
+
+// Base
+@import url(./common/base.scss);

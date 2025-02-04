@@ -1,0 +1,23 @@
+#root {
+  @apply w-screen h-fit text-secondaryDarkColor dark:text-primaryLightColor font-prr overflow-x-hidden select-none;
+
+  .container {
+    @apply px-5 sm:px-0;
+  }
+}
+
+*::-webkit-scrollbar {
+  @apply w-2 bg-transparent dark:bg-primaryDarkColor;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-[#424249] dark:bg-[#ababab] border-2 border-solid border-transparent rounded-md bg-clip-content;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  @apply bg-primaryDarkColor dark:bg-[#808080];
+}
+
+*::-webkit-scrollbar-thumb:active {
+  @apply bg-secondaryDarkColor dark:bg-[#616161];
+}
