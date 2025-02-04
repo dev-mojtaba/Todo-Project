@@ -9,6 +9,9 @@ export default {
         secondaryLightColor: "#DFDFDF",
         primaryDarkColor: "#212121",
         secondaryDarkColor: "#121212",
+        primaryInput: "#323235",
+        primaryInputText: "#636366",
+        primaryInputTextHover: "#9CA394",
       },
       container: {
         center: true,

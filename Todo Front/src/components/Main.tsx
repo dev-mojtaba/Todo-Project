@@ -1,5 +1,6 @@
 import React from "react";
 import TodoProvider from "../providers/TodoProvider";
+import SearchBox from "./Main/SearchBox";
 
 const Main: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ const Main: React.FC = () => {
       <div className="main__wrapper">
         <h2>Your Tasks</h2>
         <TodoProvider>
-          <h3>Children & Provider</h3>
+          <SearchBox />
         </TodoProvider>
       </div>
     </main>

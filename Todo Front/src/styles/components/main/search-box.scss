@@ -1,0 +1,35 @@
+main {
+  .main__wrapper {
+    .search__box {
+      @apply flex items-center gap-2.5 w-full h-fit;
+
+      .search-icon {
+        @apply fill-primaryDarkColor dark:fill-primaryLightColor;
+      }
+
+      label {
+        @apply relative w-full;
+
+        .search-icon {
+          @apply absolute inset-y-0 mx-4 my-auto pointer-events-none;
+        }
+
+        #search {
+          @apply indent-8 px-4 py-2 w-full bg-primaryLightColor dark:bg-primaryInput rounded-lg outline-none border-none placeholder:text-primaryInputText placeholder:text-sm placeholder:select-none placeholder:transition-all duration-300 ease-linear;
+
+          &:hover {
+            @apply placeholder:text-primaryInputTextHover;
+          }
+
+          &:focus {
+            @apply placeholder:opacity-0 outline-none;
+          }
+        }
+      }
+
+      .search--btn {
+        @apply p-2 bg-primaryColor rounded-full;
+      }
+    }
+  }
+}
