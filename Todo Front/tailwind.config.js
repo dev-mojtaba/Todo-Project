@@ -12,6 +12,7 @@ export default {
         primaryInput: "#323235",
         primaryInputText: "#636366",
         primaryInputTextHover: "#9CA394",
+        primaryTaskOverviewBorder: "#4B5563",
       },
       container: {
         center: true,

@@ -1,0 +1,31 @@
+main {
+  .main__wrapper {
+    .task-management__box {
+      @apply flex items-center justify-between py-1 w-full border-b border-primaryTaskOverviewBorder;
+
+      .task-overview__box {
+        .total__tasks {
+          @apply flex items-center gap-1;
+
+          span {
+            @apply text-xs 2xs:text-sm xs:text-base;
+          }
+
+          span:last-child {
+            @apply p-1 bg-primaryColor rounded-full;
+          }
+        }
+      }
+
+      .sort-by__box {
+        label {
+          @apply flex items-center gap-2 text-xs 2xs:text-sm xs:text-base;
+
+          #sort-by {
+            @apply p-1 bg-primaryLightColor dark:bg-primaryInput text-center text-primaryInputText dark:text-primaryLightColor rounded-lg cursor-pointer outline-none appearance-none;
+          }
+        }
+      }
+    }
+  }
+}
