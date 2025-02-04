@@ -1,7 +1,7 @@
 main {
   .main__wrapper {
     .add-task__box {
-      @apply absolute right-4 2xs:right-5 xs:right-6 sm:right-7 md:right-8 lg:right-9 xl:right-10 cursor-pointer;
+      @apply ml-auto cursor-pointer;
 
       .add {
         @apply relative flex items-center justify-center p-6 w-fit h-fit bg-primaryColor rounded-full aspect-square;

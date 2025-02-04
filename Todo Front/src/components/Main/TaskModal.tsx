@@ -5,7 +5,7 @@ import uuidv4 from "../../helper/uuidv4";
 import PencilIcon from "../Icons/Pencil";
 
 const TaskModal: React.FC = () => {
-  const { modal, setEdited, setModal, setTodo, total } = useTodo();
+  const { modal, setEdited, setModal, setTodo } = useTodo();
   const [inputValue, setInputValue] = useState<string>("");
   const ref = useRef<HTMLInputElement | null>(null);
 
@@ -26,7 +26,6 @@ const TaskModal: React.FC = () => {
       ...todo,
       {
         date: new Date(),
-        id: total,
         isDone: false,
         isEdited: false,
         isPinned: false,

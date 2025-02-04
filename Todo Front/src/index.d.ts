@@ -21,7 +21,6 @@ interface TodoContextType {
 
 type Todo = {
   date: Date;
-  id: number;
   isDone: boolean;
   isEdited: boolean;
   isPinned: boolean;
