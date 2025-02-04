@@ -13,6 +13,12 @@ export default {
         primaryInputText: "#636366",
         primaryInputTextHover: "#9CA394",
         primaryTaskOverviewBorder: "#4B5563",
+        primaryButton: "#32D974",
+        primaryButtonHover: "#00CC84",
+        secondaryButton: "#17A2B8",
+        secondaryButtonHover: "#138496",
+        cancelButton: "#DC3545",
+        cancelButtonHover: "#C82333",
       },
       container: {
         center: true,

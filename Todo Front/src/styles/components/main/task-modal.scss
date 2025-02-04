@@ -1,0 +1,92 @@
+main {
+  .main__wrapper {
+    .create-task__modal {
+      @apply fixed -top-full left-0 flex items-center justify-center w-screen h-screen bg-black/[0.01] dark:bg-white/[0.01] transition-[top,_backdrop-filter] ease-linear duration-300;
+
+      &.active {
+        @apply -top-0 backdrop-blur-xl;
+      }
+
+      &.examine {
+        .create-task__wrapper {
+          label {
+            &::after {
+              content: "";
+              @apply absolute top-0 left-0 w-full h-full cursor-not-allowed;
+            }
+          }
+        }
+      }
+
+      .create-task__wrapper {
+        @apply container flex flex-col items-center justify-center gap-8;
+
+        h3 {
+          @apply text-2xl;
+        }
+
+        span {
+          @apply text-xs;
+        }
+
+        label {
+          @apply relative w-full;
+
+          .pencil-icon {
+            @apply absolute inset-y-0 mx-4 my-auto fill-primaryDarkColor dark:fill-primaryLightColor pointer-events-none;
+          }
+
+          #create-task {
+            @apply indent-8 px-4 py-2 w-full bg-primaryLightColor dark:bg-primaryInput rounded-lg outline-none border-none placeholder:text-primaryInputText placeholder:select-none placeholder:transition-all duration-300 ease-linear;
+
+            &:hover {
+              @apply placeholder:text-primaryInputTextHover;
+            }
+
+            &:focus {
+              @apply placeholder:opacity-0 outline-none;
+            }
+          }
+
+          span {
+            @apply absolute right-0 top-1/2 mx-4 text-xs text-secondaryDarkColor dark:text-secondaryLightColor -translate-y-1/2 pointer-events-none;
+          }
+        }
+
+        .modal__buttons {
+          @apply flex gap-10;
+
+          .cancel,
+          .edit,
+          .create {
+            @apply px-6 py-3 rounded-full transition-colors ease-linear;
+          }
+
+          .cancel {
+            @apply bg-cancelButton;
+
+            &:hover {
+              @apply bg-cancelButtonHover;
+            }
+          }
+
+          .edit {
+            @apply bg-secondaryButton;
+
+            &:hover {
+              @apply bg-secondaryButtonHover;
+            }
+          }
+
+          .create {
+            @apply bg-primaryButton;
+
+            &:hover {
+              @apply bg-primaryButtonHover;
+            }
+          }
+        }
+      }
+    }
+  }
+}

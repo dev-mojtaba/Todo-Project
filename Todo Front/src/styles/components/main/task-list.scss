@@ -158,7 +158,7 @@ main {
           }
 
           .edited {
-            @apply absolute bottom-1 right-1 text-[8px] leading-none text-secondaryDarkColor dark:text-secondaryLightColor italic;
+            @apply absolute top-1 left-1 text-[8px] leading-none text-secondaryDarkColor dark:text-secondaryLightColor italic;
           }
 
           .left,
