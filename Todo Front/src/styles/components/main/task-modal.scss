@@ -26,7 +26,7 @@ main {
         }
 
         span {
-          @apply text-xs;
+          @apply text-xs text-center;
         }
 
         label {
@@ -55,36 +55,6 @@ main {
 
         .modal__buttons {
           @apply flex gap-10;
-
-          .cancel,
-          .edit,
-          .create {
-            @apply px-6 py-3 rounded-full transition-colors ease-linear;
-          }
-
-          .cancel {
-            @apply bg-cancelButton;
-
-            &:hover {
-              @apply bg-cancelButtonHover;
-            }
-          }
-
-          .edit {
-            @apply bg-secondaryButton;
-
-            &:hover {
-              @apply bg-secondaryButtonHover;
-            }
-          }
-
-          .create {
-            @apply bg-primaryButton;
-
-            &:hover {
-              @apply bg-primaryButtonHover;
-            }
-          }
         }
       }
     }

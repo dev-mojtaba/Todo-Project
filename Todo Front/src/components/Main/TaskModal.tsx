@@ -3,11 +3,18 @@ import useTodo from "../../hooks/useTodo";
 import uuidv5 from "../../helper/uuidv5";
 import uuidv4 from "../../helper/uuidv4";
 import PencilIcon from "../Icons/Pencil";
+import { toast } from "react-toastify";
 
 const TaskModal: React.FC = () => {
   const { modal, setEdited, setModal, setTodo } = useTodo();
   const [inputValue, setInputValue] = useState<string>("");
   const ref = useRef<HTMLInputElement | null>(null);
+
+  const emptyWarn = () => {
+    toast.warn("Task subject cannot be empty.", {
+      theme: "dark",
+    });
+  };
 
   const closeModal = () => {
     setModal([false, { editMode: false, examineMode: false }]);
@@ -16,11 +23,9 @@ const TaskModal: React.FC = () => {
 
   const createTask = () => {
     if (inputValue.trim().length === 0) {
-      alert("Task subject cannot be empty.");
+      emptyWarn();
       return;
     }
-
-    closeModal();
 
     setTodo((todo) => [
       ...todo,
@@ -33,21 +38,37 @@ const TaskModal: React.FC = () => {
         uuid: uuidv5(inputValue, uuidv4()),
       },
     ]);
+
+    toast.success(`Task "${inputValue}" created successfully.`, {
+      theme: "dark",
+    });
+
+    closeModal();
   };
 
   const editTask = () => {
     if (inputValue.trim().length === 0) {
-      alert("Task subject cannot be empty.");
+      emptyWarn();
       return;
     }
     if (inputValue === modal[1].subject) {
-      alert("Task subject cannot be the same.");
+      toast.warn("Task subject is the same.", {
+        theme: "dark",
+      });
       return;
     }
 
-    closeModal();
+    if (modal[1].editMode) {
+      const prev = inputValue;
+      const next = modal[1].subject;
 
-    if (modal[1].editMode) setEdited(modal[1].uuid, inputValue);
+      setEdited(modal[1].uuid, prev);
+      toast.info(`Task "${prev}" edited to "${next}" successfully.`, {
+        theme: "dark",
+      });
+    }
+
+    closeModal();
   };
 
   useEffect(() => {
@@ -57,7 +78,13 @@ const TaskModal: React.FC = () => {
   }, [modal]);
 
   return (
-    <div className={"create-task__modal" + (modal[0] ? " active" : "") + (modal[1].examineMode ? " examine" : "")}>
+    <div
+      className={
+        "create-task__modal" +
+        (modal[0] ? " active" : "") +
+        (modal[1].examineMode ? " examine" : "")
+      }
+    >
       <div className="create-task__wrapper">
         {modal[1].editMode && <h3>Edit a Task</h3>}
         {!modal[1].editMode && !modal[1].examineMode && <h3>Create a Task</h3>}
@@ -79,20 +106,20 @@ const TaskModal: React.FC = () => {
         </label>
         <div className="modal__buttons">
           {modal[1].examineMode ? (
-            <button className="cancel" onClick={closeModal}>
+            <button className="primary-cancel" onClick={closeModal}>
               Close
             </button>
           ) : (
             <>
-              <button className="cancel" onClick={closeModal}>
+              <button className="primary-cancel" onClick={closeModal}>
                 Cancel
               </button>
               {modal[1].editMode ? (
-                <button className="edit" onClick={editTask}>
+                <button className="secondary-btn" onClick={editTask}>
                   Edit
                 </button>
               ) : (
-                <button className="create" onClick={createTask}>
+                <button className="primary-btn" onClick={createTask}>
                   Create
                 </button>
               )}

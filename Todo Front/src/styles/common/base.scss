@@ -4,6 +4,36 @@
   .container {
     @apply px-5 sm:px-0;
   }
+
+  .primary-cancel,
+  .secondary-btn,
+  .primary-btn {
+    @apply px-6 py-3 rounded-full transition-colors ease-linear;
+  }
+
+  .primary-cancel {
+    @apply bg-cancelButton;
+
+    &:hover {
+      @apply bg-cancelButtonHover;
+    }
+  }
+
+  .secondary-btn {
+    @apply bg-secondaryButton;
+
+    &:hover {
+      @apply bg-secondaryButtonHover;
+    }
+  }
+
+  .primary-btn {
+    @apply bg-primaryButton;
+
+    &:hover {
+      @apply bg-primaryButtonHover;
+    }
+  }
 }
 
 *::-webkit-scrollbar {

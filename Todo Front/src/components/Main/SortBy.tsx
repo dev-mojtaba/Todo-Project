@@ -1,5 +1,6 @@
 import React from "react";
 import useTodo from "../../hooks/useTodo";
+import { toast } from "react-toastify";
 
 const SortBy: React.FC = () => {
   const { filter, setFilter } = useTodo();
@@ -8,6 +9,9 @@ const SortBy: React.FC = () => {
     const value = e.target.value as FilterTodoTypes;
 
     setFilter(value);
+    toast.info(`Tasks sorted by ${value}.`, {
+      theme: "dark",
+    });
   };
 
   return (

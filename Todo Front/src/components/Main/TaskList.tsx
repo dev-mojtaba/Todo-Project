@@ -41,22 +41,19 @@ const TaskList: React.FC = () => {
         </div>
       ) : (
         <div className="list__box">
-          {data.map(
-            ({ date, id, isDone, isEdited, isPinned, subject, uuid }) => {
-              return (
-                <TaskBox
-                  date={date}
-                  id={id}
-                  isDone={isDone}
-                  isEdited={isEdited}
-                  isPinned={isPinned}
-                  subject={subject}
-                  uuid={uuid}
-                  key={uuid}
-                />
-              );
-            }
-          )}
+          {data.map(({ date, isDone, isEdited, isPinned, subject, uuid }) => {
+            return (
+              <TaskBox
+                date={date}
+                isDone={isDone}
+                isEdited={isEdited}
+                isPinned={isPinned}
+                subject={subject}
+                uuid={uuid}
+                key={uuid}
+              />
+            );
+          })}
         </div>
       )}
     </div>
