@@ -6,6 +6,7 @@ interface TodoContextType {
   filter: FilterTodoTypes;
   modal: [boolean, CreateTaskModalProps];
   removeTodo: (uuid: string) => void;
+  removeTodos: () => void;
   searchedFor: string | null;
   setDone: (uuid: string) => void;
   setEdited: (uuid: string, subject: string) => void;

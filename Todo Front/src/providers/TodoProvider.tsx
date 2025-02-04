@@ -38,6 +38,7 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     filter,
     modal,
     removeTodo,
+    removeTodos,
     searchedFor,
     setDone,
     setEdited,
