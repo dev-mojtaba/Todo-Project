@@ -3,6 +3,7 @@ import TodoProvider from "../providers/TodoProvider";
 import SearchBox from "./Main/SearchBox";
 import TaskManagement from "./Main/TaskManagement";
 import TaskList from "./Main/TaskList";
+import AddTaskButton from "./Main/AddTaskButton";
 
 const Main: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const Main: React.FC = () => {
           <SearchBox />
           <TaskManagement />
           <TaskList />
+          <AddTaskButton />
         </TodoProvider>
       </div>
     </main>
