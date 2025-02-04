@@ -1,0 +1,11 @@
+header {
+  @apply flex flex-col items-center justify-center gap-5 p-5 w-full bg-white dark:bg-secondaryDarkColor;
+
+  .logo__wrapper {
+    @apply p-4 bg-primaryDarkColor dark:bg-transparent rounded-full;
+  }
+
+  h3 {
+    @apply text-center;
+  }
+}
