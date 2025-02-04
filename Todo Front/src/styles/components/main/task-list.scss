@@ -1,0 +1,292 @@
+@keyframes task-done {
+  0% {
+    @apply shadow-md;
+    transform: translateY(0) scale(1);
+  }
+
+  85% {
+    @apply shadow-md;
+    transform: translateY(6px) scale(102.5%);
+  }
+
+  90% {
+    @apply shadow-md;
+    transform: translateY(0) scale(1);
+  }
+
+  95% {
+    @apply shadow-md;
+    transform: translateY(2px) scale(100.5%);
+  }
+
+  100% {
+    @apply shadow-none;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes tick {
+  0% {
+    @apply fill-transparent;
+    stroke-dashoffset: 50;
+  }
+
+  80% {
+    @apply fill-transparent;
+  }
+
+  100% {
+    fill: light-dark(#212121, #f4f4f4);
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes typewritter {
+  from {
+    @apply w-0;
+  }
+
+  to {
+    @apply w-full;
+  }
+}
+
+@keyframes crossed-subject {
+  from {
+    @apply w-0;
+  }
+
+  to {
+    @apply w-full;
+  }
+}
+
+main {
+  .main__wrapper {
+    .task-list__box {
+      @apply relative flex items-center justify-center flex-col w-full h-44 overflow-y-visible;
+
+      .empty {
+        @apply flex flex-col items-center w-full h-full;
+
+        h5 {
+          @apply font-bold;
+        }
+
+        p {
+          @apply text-sm;
+        }
+
+        .plus-icon {
+          @apply w-20 h-20 fill-transparent stroke-primaryDarkColor dark:stroke-primaryInputText;
+        }
+      }
+
+      .list__box {
+        @apply relative flex flex-col items-center gap-2.5 w-full h-full overflow-x-hidden overflow-y-auto;
+        transform-style: preserve-3d;
+        transform: perspective(1000px);
+
+        .task__box {
+          @apply relative flex items-center justify-between px-1 2xs:px-2 xs:px-3 sm:px-4 md:px-5 lg:px-6 py-4 w-[97.5%] h-fit bg-primaryLightColor dark:bg-secondaryDarkColor rounded-lg transition-[transform,_box-shadow,_filter] ease-linear duration-300;
+
+          &:hover {
+            & + * {
+              @apply blur-[3px];
+            }
+
+            & + * + * {
+              @apply blur-sm;
+            }
+
+            & + * + * + * {
+              @apply blur-[6px];
+            }
+          }
+
+          &:has(+ *:hover) {
+            @apply blur-[3px];
+          }
+
+          &:has(+ * + *:hover) {
+            @apply blur-sm;
+          }
+
+          &:has(+ * + * + *:hover) {
+            @apply blur-[6px];
+          }
+
+          &.active {
+            animation: task-done 1s ease-in-out 1;
+
+            .left {
+              .checkbox {
+                .tick-icon {
+                  @apply absolute inset-0 block m-auto rounded-full;
+
+                  path {
+                    @apply stroke-1 stroke-primaryDarkColor dark:stroke-primaryLightColor transition-all;
+                    animation: tick 1s ease-in-out 1 forwards;
+                    stroke-dasharray: 50;
+                    stroke-dashoffset: 50;
+                  }
+                }
+              }
+
+              .task__subject {
+                &::after {
+                  @apply absolute inset-y-0 my-auto block h-fit border-b-2 border-b-primaryDarkColor dark:border-b-primaryLightColor translate-y-[1px];
+                  animation: crossed-subject
+                    calc((var(--subject-words-length) * 0.05) * 1s) linear 1
+                    forwards;
+                }
+              }
+            }
+
+            .right {
+              .operations {
+                div:nth-child(1),
+                div:nth-child(2) {
+                  @apply pointer-events-none;
+
+                  svg {
+                    @apply grayscale;
+                  }
+                }
+              }
+            }
+          }
+
+          .edited {
+            @apply absolute bottom-1 right-1 text-[8px] leading-none text-secondaryDarkColor dark:text-secondaryLightColor italic;
+          }
+
+          .left,
+          .right {
+            @apply flex items-center gap-1 2xs:gap-1.5 xs:gap-2;
+          }
+
+          .left {
+            .checkbox {
+              @apply relative w-4 2xs:w-5 xs:w-6 h-4 2xs:h-5 xs:h-6 border-2 border-primaryDarkColor dark:border-primaryLightColor rounded-full cursor-pointer;
+
+              .tick-icon {
+                @apply w-3 2xs:w-3.5 xs:w-4 h-3 2xs:h-3.5 xs:h-4 hidden;
+              }
+            }
+
+            .task__subject {
+              @apply relative flex items-center gap-1 w-fit h-fit transition-all;
+
+              &::after {
+                content: "";
+              }
+
+              p {
+                @apply text-xs xs:text-sm sm:text-base overflow-hidden whitespace-nowrap;
+
+                animation: typewritter
+                  calc((var(--subject-words-length) * 0.05) * 1s)
+                  steps(var(--subject-words-length)) forwards;
+              }
+            }
+          }
+
+          .right {
+            .date {
+              @apply text-[10px] xs:text-xs sm:text-sm md:text-base;
+            }
+
+            .operations {
+              @apply flex items-center gap-0.5 2xs:gap-1 xs:gap-1.5 sm:gap-2;
+
+              div {
+                @apply relative w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 cursor-pointer;
+
+                &:hover {
+                  svg:first-child {
+                    @apply opacity-0;
+                  }
+
+                  svg:nth-child(2) {
+                    @apply opacity-100;
+                  }
+                }
+
+                svg {
+                  @apply absolute inset-0 m-auto w-full h-full transition-opacity ease-linear opacity-100;
+                }
+
+                svg:nth-child(2) {
+                  @apply opacity-0;
+                }
+              }
+
+              .pushpin {
+                svg {
+                  @apply fill-yellow-700 dark:fill-yellow-500;
+                }
+
+                &[data-pinned="false"] {
+                  svg.unpin {
+                    @apply opacity-0;
+                  }
+
+                  svg:not(.unpin) {
+                    &:first-child {
+                      @apply opacity-100;
+                    }
+                  }
+                }
+
+                &[data-pinned="true"] {
+                  svg.unpin {
+                    @apply opacity-100;
+                  }
+
+                  svg:not(.unpin) {
+                    @apply opacity-0;
+                  }
+                }
+              }
+
+              .edit {
+                svg {
+                  @apply fill-emerald-700 dark:fill-emerald-500;
+                }
+              }
+
+              .examine {
+                svg {
+                  @apply fill-cyan-700 dark:fill-cyan-500;
+                }
+              }
+
+              .delete {
+                svg {
+                  @apply fill-red-700 dark:fill-red-500;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .not__found {
+        @apply flex flex-col items-center w-full h-full;
+
+        h5 {
+          @apply font-bold;
+        }
+
+        p {
+          @apply text-sm;
+        }
+
+        &-icon {
+          @apply w-20 h-20 fill-primaryDarkColor dark:fill-primaryInputText;
+        }
+      }
+    }
+  }
+}
