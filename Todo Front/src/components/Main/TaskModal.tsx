@@ -59,10 +59,10 @@ const TaskModal: React.FC = () => {
     }
 
     if (modal[1].editMode) {
-      const prev = inputValue;
-      const next = modal[1].subject;
+      const prev = modal[1].subject;
+      const next = inputValue;
 
-      setEdited(modal[1].uuid, prev);
+      setEdited(modal[1].uuid, next);
       toast.info(`Task "${prev}" edited to "${next}" successfully.`, {
         theme: "dark",
       });

@@ -1,5 +1,7 @@
 {
   "name": "todo-front",
+  "author": "MOJTABA5858",
+  "description": "Todo Project Frontend made with React, Vite, TypeScript, TailwindCSS and SCSS with love by MOJTABA5858",
   "private": true,
   "version": "1.0.0",
   "type": "module",
