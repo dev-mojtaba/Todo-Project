@@ -26,26 +26,38 @@ type Todo = {
   isPinned: boolean;
   subject: string;
   uuid: string;
-}
+};
 
-type FilterTodoTypes = "default" | "priority" | "createdAt" | "edited" | "completed";
+type FilterTodoTypes =
+  | "default"
+  | "priority"
+  | "createdAt"
+  | "edited"
+  | "completed";
 
-type CreateTaskModalProps = 
+type CreateTaskModalProps =
   | {
-    editMode: false;
-    examineMode: false;
-    subject?: undefined;
-    uuid?: undefined;
+      editMode: false;
+      examineMode: false;
+      subject?: undefined;
+      uuid?: undefined;
     }
   | {
-    editMode: true;
-    examineMode: false;
-    subject: string;
-    uuid: string;
+      editMode: true;
+      examineMode: false;
+      subject: string;
+      uuid: string;
     }
   | {
-    editMode: false;
-    examineMode: true;
-    subject: string;
-    uuid?: undefined;
+      editMode: false;
+      examineMode: true;
+      subject: string;
+      uuid?: undefined;
     };
+
+type TodoConfig = {
+  /** Whether to use the database or not. */
+  useDatabase: boolean;
+};
+
+type TodoConfigOptional = Partial<TodoConfig>;
