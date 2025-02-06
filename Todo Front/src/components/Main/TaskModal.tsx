@@ -83,7 +83,7 @@ const TaskModal: React.FC = () => {
         {modal[1].editMode && <h3>Edit a Task</h3>}
         {!modal[1].editMode && !modal[1].examineMode && <h3>Create a Task</h3>}
         {modal[1].examineMode && <h3>Examine a Task</h3>}
-        <span>Tip: Tasks with more than 16 characters will be cut off.</span>
+        <span>Tip: Tasks with more than 12 characters will be cut off.</span>
         <label htmlFor="create-task">
           <PencilIcon />
           <input
