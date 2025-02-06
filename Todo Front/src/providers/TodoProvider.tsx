@@ -43,7 +43,9 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
       fetchData();
     } else {
-      console.log("Running in offline mode. No database connection.");
+      toast.info("Running in offline mode. No database connection.", {
+        theme: "dark",
+      });
     }
   }, []);
 
@@ -87,10 +89,18 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (!data) return;
       const { isDone, isEdited, isPinned, subject } = data;
       updateTodo(uuid, {
-        isDone: changingData.isDone !== undefined ? changingData.isDone : isDone,
-        isEdited: changingData.isEdited !== undefined ? changingData.isEdited : isEdited,
-        isPinned: changingData.isPinned !== undefined ? changingData.isPinned : isPinned,
-        subject: changingData.subject !== undefined ? changingData.subject : subject,
+        isDone:
+          changingData.isDone !== undefined ? changingData.isDone : isDone,
+        isEdited:
+          changingData.isEdited !== undefined
+            ? changingData.isEdited
+            : isEdited,
+        isPinned:
+          changingData.isPinned !== undefined
+            ? changingData.isPinned
+            : isPinned,
+        subject:
+          changingData.subject !== undefined ? changingData.subject : subject,
       });
     }
   };
@@ -151,17 +161,19 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const setPinned = async (uuid: string) => {
     const todoItem = todo.find((t) => t.uuid === uuid);
-  
+
     if (!todoItem) {
       console.error("Todo item not found");
       return;
     }
-  
+
     if (config.useDatabase) {
       try {
         await update(uuid, { isPinned: !todoItem.isPinned });
         setTodo((todo) =>
-          todo.map((t) => (t.uuid === uuid ? { ...t, isPinned: !todoItem.isPinned } : t))
+          todo.map((t) =>
+            t.uuid === uuid ? { ...t, isPinned: !todoItem.isPinned } : t
+          )
         );
         if (!todoItem.isPinned) {
           toast.success("Todo pinned successfully", { theme: "dark" });
@@ -174,7 +186,9 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       }
     } else {
       setTodo((todo) =>
-        todo.map((t) => (t.uuid === uuid ? { ...t, isPinned: !todoItem.isPinned } : t))
+        todo.map((t) =>
+          t.uuid === uuid ? { ...t, isPinned: !todoItem.isPinned } : t
+        )
       );
       if (!todoItem.isPinned) {
         toast.success("Todo pinned successfully", { theme: "dark" });

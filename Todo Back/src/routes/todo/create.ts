@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
   const newTodo = new TodoModel({ subject, uuid });
 
   await newTodo.save();
-  res.status(201).json({ message: "Todo created successfully" });
+  res.status(201).json({ message: "Todo created successfully", data: newTodo });
 });
 
 export default router;

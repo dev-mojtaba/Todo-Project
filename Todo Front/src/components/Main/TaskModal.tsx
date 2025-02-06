@@ -29,19 +29,10 @@ const TaskModal: React.FC = () => {
       return;
     }
 
-    const newTask = {
-      date: new Date(),
-      isDone: false,
-      isEdited: false,
-      isPinned: false,
-      subject: inputValue,
-      uuid: uuidv5(inputValue, uuidv4()),
-    };
-
     if (config.useDatabase) {
       try {
-        await createTodo(inputValue);
-        setTodo((todo) => [...todo, newTask]);
+        const createdTask = await createTodo(inputValue);
+        setTodo((todo) => [...todo, createdTask]);
         toast.success(`Task "${inputValue}" created successfully.`, {
           theme: "dark",
         });
@@ -50,7 +41,17 @@ const TaskModal: React.FC = () => {
         toast.error("Failed to create task", { theme: "dark" });
       }
     } else {
-      setTodo((todo) => [...todo, newTask]);
+      setTodo((todo) => [
+        ...todo,
+        {
+          date: new Date(),
+          isDone: false,
+          isEdited: false,
+          isPinned: false,
+          subject: inputValue,
+          uuid: uuidv5(inputValue, uuidv4()),
+        },
+      ]);
       toast.success(`Task "${inputValue}" created successfully.`, {
         theme: "dark",
       });
