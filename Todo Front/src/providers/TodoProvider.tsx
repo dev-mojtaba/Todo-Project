@@ -52,14 +52,15 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       try {
         await deleteTodo(uuid);
         setTodo((todo) => todo.filter((t) => t.uuid !== uuid));
+        toast.success("Todo removed successfully", { theme: "dark" });
       } catch (error) {
         console.error("Error removing todo:", error);
         toast.error("Failed to remove todo", { theme: "dark" });
       }
     } else {
       setTodo((todo) => todo.filter((t) => t.uuid !== uuid));
+      toast.success("Todo removed successfully", { theme: "dark" });
     }
-    toast.success("Todo removed successfully", { theme: "dark" });
   };
 
   /**

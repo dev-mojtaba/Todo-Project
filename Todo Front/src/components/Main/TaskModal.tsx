@@ -4,6 +4,8 @@ import uuidv5 from "../../helper/uuidv5";
 import uuidv4 from "../../helper/uuidv4";
 import PencilIcon from "../Icons/Pencil";
 import { toast } from "react-toastify";
+import config from "../../config";
+import createTodo from "../../services/createTodo";
 
 const TaskModal: React.FC = () => {
   const { modal, setEdited, setModal, setTodo } = useTodo();
@@ -21,27 +23,38 @@ const TaskModal: React.FC = () => {
     setInputValue("");
   };
 
-  const createTask = () => {
+  const createTask = async () => {
     if (inputValue.trim().length === 0) {
       emptyWarn();
       return;
     }
 
-    setTodo((todo) => [
-      ...todo,
-      {
-        date: new Date(),
-        isDone: false,
-        isEdited: false,
-        isPinned: false,
-        subject: inputValue,
-        uuid: uuidv5(inputValue, uuidv4()),
-      },
-    ]);
+    const newTask = {
+      date: new Date(),
+      isDone: false,
+      isEdited: false,
+      isPinned: false,
+      subject: inputValue,
+      uuid: uuidv5(inputValue, uuidv4()),
+    };
 
-    toast.success(`Task "${inputValue}" created successfully.`, {
-      theme: "dark",
-    });
+    if (config.useDatabase) {
+      try {
+        await createTodo(inputValue);
+        setTodo((todo) => [...todo, newTask]);
+        toast.success(`Task "${inputValue}" created successfully.`, {
+          theme: "dark",
+        });
+      } catch (error) {
+        console.error("Error creating task:", error);
+        toast.error("Failed to create task", { theme: "dark" });
+      }
+    } else {
+      setTodo((todo) => [...todo, newTask]);
+      toast.success(`Task "${inputValue}" created successfully.`, {
+        theme: "dark",
+      });
+    }
 
     closeModal();
   };
