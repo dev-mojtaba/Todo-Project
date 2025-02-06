@@ -3,10 +3,12 @@ import Main from "./routes";
 import mongoose from "mongoose";
 import config from "./config";
 import reqLogger from "./middlewares/reqLogger";
+import cors from "cors";
 
 const app = express();
 const port = config.VARIABLES.PORT;
 
+app.use(cors());
 app.use(express.json());
 app.use(reqLogger);
 app.use("/api", Main);

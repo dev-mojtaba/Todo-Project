@@ -10,11 +10,13 @@
   "type": "commonjs",
   "description": "Todo Project Backend made with ExpressJS, Mongoose and TypeScript with love by MOJTABA5858",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.9.7"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
