@@ -3,6 +3,7 @@ import TodoContext from "../contexts/TodoContext";
 import fetchTodos from "../services/fetchTodos";
 import { toast } from "react-toastify";
 import config from "../config";
+import deleteTodo from "../services/deleteTodo";
 
 const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [todo, setTodo] = useState<Todo[]>([]);
@@ -45,8 +46,19 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, []);
 
-  const removeTodo = (uuid: string) => {
-    setTodo((todo) => todo.filter((t) => t.uuid !== uuid));
+  const removeTodo = async (uuid: string) => {
+    if (config.useDatabase) {
+      try {
+        await deleteTodo(uuid);
+        setTodo((todo) => todo.filter((t) => t.uuid !== uuid));
+      } catch (error) {
+        console.error("Error removing todo:", error);
+        toast.error("Failed to remove todo", { theme: "dark" });
+      }
+    } else {
+      setTodo((todo) => todo.filter((t) => t.uuid !== uuid));
+    }
+    toast.success("Todo removed successfully", { theme: "dark" });
   };
 
   const removeTodos = () => {

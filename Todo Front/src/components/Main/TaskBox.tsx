@@ -47,9 +47,6 @@ const TaskBox: React.FC<Todo> = ({
 
   const deleteTodo = () => {
     removeTodo(uuid);
-    toast.info(`Task "${subject}" deleted successfully.`, {
-      theme: "dark",
-    });
   };
 
   return (
