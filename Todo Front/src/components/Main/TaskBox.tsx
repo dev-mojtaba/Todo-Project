@@ -27,12 +27,6 @@ const TaskBox: React.FC<Todo> = ({
 
   const doneTodo = () => {
     setDone(uuid);
-
-    if (!isDone) {
-      toast.info(`Task "${subject}" finished successfully.`, {
-        theme: "dark",
-      });
-    }
   };
 
   const pinTodo = () => {

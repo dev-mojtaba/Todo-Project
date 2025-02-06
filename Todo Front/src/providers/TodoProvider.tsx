@@ -4,6 +4,7 @@ import fetchTodos from "../services/fetchTodos";
 import { toast } from "react-toastify";
 import config from "../config";
 import deleteTodo from "../services/deleteTodo";
+import updateTodo from "../services/updateTodo";
 
 const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [todo, setTodo] = useState<Todo[]>([]);
@@ -61,14 +62,67 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     toast.success("Todo removed successfully", { theme: "dark" });
   };
 
+  /**
+   * This is for later updates or i'll remove it.
+   * Still not sure about it.
+   */
   const removeTodos = () => {
     setTodo([]);
   };
 
-  const setDone = (uuid: string) => {
-    setTodo((todo) =>
-      todo.map((t) => (t.uuid === uuid ? { ...t, isDone: !t.isDone } : t))
-    );
+  /**
+   * Private function to update todo.
+   * This is not exposed to the context.
+   * Local use only.
+   *
+   * @private
+   */
+  const update = async (
+    uuid: string,
+    changingData: Partial<Omit<Todo, "date" | "uuid">> = {}
+  ) => {
+    if (config.useDatabase) {
+      const data = todo.find((t) => t.uuid === uuid);
+      if (!data) return;
+      const { isDone, isEdited, isPinned, subject } = data;
+      updateTodo(uuid, {
+        isDone: changingData.isDone || isDone,
+        isEdited: changingData.isEdited || isEdited,
+        isPinned: changingData.isPinned || isPinned,
+        subject: changingData.subject || subject,
+      });
+    }
+  };
+
+  const setDone = async (uuid: string) => {
+    const todoItem = todo.find((t) => t.uuid === uuid);
+
+    if (!todoItem) {
+      console.error("Todo item not found");
+      return;
+    }
+
+    if (config.useDatabase) {
+      try {
+        await update(uuid, { isDone: !todoItem.isDone });
+        setTodo((todo) =>
+          todo.map((t) => (t.uuid === uuid ? { ...t, isDone: !t.isDone } : t))
+        );
+        if (!todoItem.isDone) {
+          toast.success("Todo marked as done successfully", { theme: "dark" });
+        }
+      } catch (error) {
+        console.error("Error updating todo:", error);
+        toast.error("Failed to update todo", { theme: "dark" });
+      }
+    } else {
+      setTodo((todo) =>
+        todo.map((t) => (t.uuid === uuid ? { ...t, isDone: !t.isDone } : t))
+      );
+      if (!todoItem.isDone) {
+        toast.success("Todo marked as done successfully", { theme: "dark" });
+      }
+    }
   };
 
   const setEdited = (uuid: string, subject: string) => {
