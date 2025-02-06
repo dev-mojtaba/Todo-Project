@@ -10,7 +10,6 @@ import SearchFilledIcon from "../Icons/SearchFilled";
 import PushpinIcon from "../Icons/Pushpin";
 import PushpinFilledIcon from "../Icons/PushpinFilled";
 import UnpinFilledIcon from "../Icons/UnpinFilled";
-import { toast } from "react-toastify";
 
 const TaskBox: React.FC<Todo> = ({
   date,
@@ -25,24 +24,6 @@ const TaskBox: React.FC<Todo> = ({
   const length = subject.length > maxLength ? maxLength + 3 : subject.length;
   subject = subject.trim();
 
-  const doneTodo = () => {
-    setDone(uuid);
-  };
-
-  const pinTodo = () => {
-    setPinned(uuid);
-
-    if (!isPinned) {
-      toast.info(`Task "${subject}" pinned successfully.`, {
-        theme: "dark",
-      });
-    }
-  };
-
-  const deleteTodo = () => {
-    removeTodo(uuid);
-  };
-
   return (
     <div
       className={`task__box${isDone ? " active" : ""}`}
@@ -50,7 +31,7 @@ const TaskBox: React.FC<Todo> = ({
     >
       {isEdited && <span className="edited">Edited</span>}
       <div className="left">
-        <div className="checkbox" onClick={doneTodo}>
+        <div className="checkbox" onClick={() => setDone(uuid)}>
           <TickIcon />
         </div>
         <div
@@ -66,12 +47,15 @@ const TaskBox: React.FC<Todo> = ({
       </div>
       <div className="right">
         <span className="date">
-          {new Date(date).toLocaleDateString("en-US", { day: "numeric", month: "short" })}
+          {new Date(date).toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "short",
+          })}
         </span>
         <div className="operations">
           <div
             className="pushpin"
-            onClick={pinTodo}
+            onClick={() => setPinned(uuid)}
             data-pinned={isPinned ? "true" : "false"}
           >
             <PushpinIcon />
@@ -99,7 +83,7 @@ const TaskBox: React.FC<Todo> = ({
             <SearchIcon />
             <SearchFilledIcon />
           </div>
-          <div className="delete" onClick={deleteTodo}>
+          <div className="delete" onClick={() => removeTodo(uuid)}>
             <DeleteIcon />
             <DeleteFilledIcon />
           </div>

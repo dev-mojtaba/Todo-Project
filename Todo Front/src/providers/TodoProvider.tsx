@@ -148,10 +148,39 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     toast.success("Todo edited successfully", { theme: "dark" });
   };
 
-  const setPinned = (uuid: string) => {
-    setTodo((todo) =>
-      todo.map((t) => (t.uuid === uuid ? { ...t, isPinned: !t.isPinned } : t))
-    );
+  const setPinned = async (uuid: string) => {
+    const todoItem = todo.find((t) => t.uuid === uuid);
+  
+    if (!todoItem) {
+      console.error("Todo item not found");
+      return;
+    }
+  
+    if (config.useDatabase) {
+      try {
+        await update(uuid, { isPinned: !todoItem.isPinned });
+        setTodo((todo) =>
+          todo.map((t) => (t.uuid === uuid ? { ...t, isPinned: !todoItem.isPinned } : t))
+        );
+        if (!todoItem.isPinned) {
+          toast.success("Todo pinned successfully", { theme: "dark" });
+        } else {
+          toast.info("Todo unpinned", { theme: "dark" });
+        }
+      } catch (error) {
+        console.error("Error updating todo:", error);
+        toast.error("Failed to update todo", { theme: "dark" });
+      }
+    } else {
+      setTodo((todo) =>
+        todo.map((t) => (t.uuid === uuid ? { ...t, isPinned: !todoItem.isPinned } : t))
+      );
+      if (!todoItem.isPinned) {
+        toast.success("Todo pinned successfully", { theme: "dark" });
+      } else {
+        toast.info("Todo unpinned", { theme: "dark" });
+      }
+    }
   };
 
   const value: TodoContextType = {
