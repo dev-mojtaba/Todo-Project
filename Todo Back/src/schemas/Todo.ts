@@ -1,6 +1,6 @@
-import { Schema } from "mongoose";
+import { Document, Schema } from "mongoose";
 
-const TodoSchema = new Schema<Todo>({
+const TodoSchema = new Schema<Todo & Document>({
   date: {
     type: Date,
     default: new Date(),
