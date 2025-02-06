@@ -57,12 +57,12 @@ MOJTABA5858
 
 ## My Social Media
 
-- __[Work GitHub Page](https://github.com/dev-mojtaba/)__
-- __[Private GitHub Page](https://github.com/mojtaba5858/)__
-- __[YouTube (Private & Work Both)](https://www.youtube.com/@MOJTABA5858/)__
-- __[Instagram](http://instagram.com/dev_mojtaba)__
-- __[LinkedIn](https://linkedin.com/in/mojtaba-zebardast-267010297/)__
+- **[Work GitHub Page](https://github.com/dev-mojtaba/)**
+- **[Private GitHub Page](https://github.com/mojtaba5858/)**
+- **[YouTube (Private & Work Both)](https://www.youtube.com/@MOJTABA5858/)**
+- **[Instagram](http://instagram.com/dev_mojtaba)**
+- **[LinkedIn](https://linkedin.com/in/mojtaba-zebardast-267010297/)**
 
-## License
+### License
 
-ISC
+[LICENSE](../LICENSE)
