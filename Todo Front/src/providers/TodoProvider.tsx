@@ -86,10 +86,10 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (!data) return;
       const { isDone, isEdited, isPinned, subject } = data;
       updateTodo(uuid, {
-        isDone: changingData.isDone || isDone,
-        isEdited: changingData.isEdited || isEdited,
-        isPinned: changingData.isPinned || isPinned,
-        subject: changingData.subject || subject,
+        isDone: changingData.isDone !== undefined ? changingData.isDone : isDone,
+        isEdited: changingData.isEdited !== undefined ? changingData.isEdited : isEdited,
+        isPinned: changingData.isPinned !== undefined ? changingData.isPinned : isPinned,
+        subject: changingData.subject !== undefined ? changingData.subject : subject,
       });
     }
   };
@@ -125,10 +125,27 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
-  const setEdited = (uuid: string, subject: string) => {
-    setTodo((todo) =>
-      todo.map((t) => (t.uuid === uuid ? { ...t, isEdited: true, subject } : t))
-    );
+  const setEdited = async (uuid: string, subject: string) => {
+    if (config.useDatabase) {
+      try {
+        await update(uuid, { subject, isEdited: true });
+        setTodo((todo) =>
+          todo.map((t) =>
+            t.uuid === uuid ? { ...t, isEdited: true, subject } : t
+          )
+        );
+      } catch (error) {
+        console.error("Error updating todo:", error);
+        toast.error("Failed to update todo", { theme: "dark" });
+      }
+    } else {
+      setTodo((todo) =>
+        todo.map((t) =>
+          t.uuid === uuid ? { ...t, isEdited: true, subject } : t
+        )
+      );
+    }
+    toast.success("Todo edited successfully", { theme: "dark" });
   };
 
   const setPinned = (uuid: string) => {
