@@ -3,7 +3,7 @@ import TodoModel from "../../models/Todo";
 
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const { all, uuid } = req.body;
   let data;
 
