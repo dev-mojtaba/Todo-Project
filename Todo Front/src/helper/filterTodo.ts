@@ -5,7 +5,7 @@ function filterTodo(todos: Todo[], filterBy: FilterTodoTypes): Todo[] {
       data = todos.sort((a, b) => (b.isPinned ? 1 : 0) - (a.isPinned ? 1 : 0));
       break;
     case "createdAt":
-      data = todos.sort((a, b) => a.date.getTime() - b.date.getTime());
+      data = todos.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
       break;
     case "edited":
       data = todos.sort((a, b) => (b.isEdited ? 1 : 0) - (a.isEdited ? 1 : 0));
@@ -14,7 +14,7 @@ function filterTodo(todos: Todo[], filterBy: FilterTodoTypes): Todo[] {
       data = todos.sort((a, b) => (b.isDone ? 1 : 0) - (a.isDone ? 1 : 0));
       break;
     default:
-      data = todos.sort((a, b) => a.id - b.id);
+      data = todos.sort();
       break;
   }
 
