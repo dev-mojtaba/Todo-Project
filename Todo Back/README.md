@@ -13,6 +13,11 @@ This is a Todo Project Backend made with ExpressJS, Mongoose, and TypeScript.
     - `Todo.ts`: Defines the Mongoose model `TodoModel` and sets a pre-save hook for UUID generation.
   - `routes/`
     - `index.ts`: Exports a router instance for handling API routes.
+    - `todo/`
+      - `create.ts`: Handles the creation of a new todo item.
+      - `get.ts`: Handles fetching todo items.
+      - `remove.ts`: Handles the deletion of a todo item.
+      - `update.ts`: Handles updating a todo item.
   - `schemas/`
     - `Todo.ts`: Defines the structure of a todo item using Mongoose schema.
   - `index.d.ts`: Defines the TypeScript type `Todo`.
@@ -49,6 +54,14 @@ PORT=3000
 ## Author
 
 MOJTABA5858
+
+## My Social Media
+
+- __[Work GitHub Page](https://github.com/dev-mojtaba/)__
+- __[Private GitHub Page](https://github.com/mojtaba5858/)__
+- __[YouTube (Private & Work Both)](https://www.youtube.com/@MOJTABA5858/)__
+- __[Instagram](http://instagram.com/dev_mojtaba)__
+- __[LinkedIn](https://linkedin.com/in/mojtaba-zebardast-267010297/)__
 
 ## License
 

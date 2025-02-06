@@ -1,50 +1,75 @@
-# React + TypeScript + Vite
+# Todo Project Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend of the Todo Project made with React, Vite, TypeScript, TailwindCSS, and SCSS.
 
-Currently, two official plugins are available:
+## Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `src/`
+  - `components/`
+    - `Header.tsx`: The header component of the application.
+    - `Footer.tsx`: The footer component of the application.
+    - `Main/`
+      - `TaskBox.tsx`: Component for displaying individual tasks.
+      - `TaskList.tsx`: Component for displaying the list of tasks.
+      - `TaskManagement.tsx`: Component for managing tasks.
+      - `TaskModal.tsx`: Modal component for creating and editing tasks.
+      - `SearchBox.tsx`: Component for searching tasks.
+      - `SortBy.tsx`: Component for sorting tasks.
+      - `TaskOverview.tsx`: Component for displaying task overview.
+      - `AddTaskButton.tsx`: Component for adding a new task.
+  - `contexts/`
+    - `TodoContext.tsx`: Context for managing todo state.
+  - `hooks/`
+    - `useTodo.ts`: Custom hook for accessing todo context.
+  - `providers/`
+    - `TodoProvider.tsx`: Provider component for todo context.
+  - `styles/`
+    - `index.scss`: Main stylesheet.
+    - `components/`
+      - `main/`
+        - `task-list.scss`: Styles for task list.
+        - `task-modal.scss`: Styles for task modal.
+        - `task-management.scss`: Styles for task management.
+        - `add-task.scss`: Styles for add task button.
+  - `helper/`
+    - `searchTodo.ts`: Helper function for searching todos.
+  - `index.d.ts`: TypeScript type definitions.
+  - `main.tsx`: Entry point of the application.
 
-## Expanding the ESLint configuration
+## Scripts
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- `dev`: Runs the application in development mode using Vite.
+- `build`: Builds the application for production.
+- `lint`: Runs ESLint to check for linting errors.
+- `preview`: Previews the production build.
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Clone the repository.
+2. Run `npm install` to install the dependencies.
+3. Run `npm run dev` to start the development server.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Open `http://localhost:5173` in your browser to view the application.
+- Use the search box to filter tasks.
+- Use the sort dropdown to sort tasks.
+- Click on the add button to create a new task.
+- Click on a task to edit or examine it.
+- Use the pin, edit, examine, and delete icons to manage tasks.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Author
+
+MOJTABA5858
+
+## My Social Media
+
+- __[Work GitHub Page](https://github.com/dev-mojtaba/)__
+- __[Private GitHub Page](https://github.com/mojtaba5858/)__
+- __[YouTube (Private & Work Both)](https://www.youtube.com/@MOJTABA5858/)__
+- __[Instagram](http://instagram.com/dev_mojtaba)__
+- __[LinkedIn](https://linkedin.com/in/mojtaba-zebardast-267010297/)__
+
+## License
+
+ISC
