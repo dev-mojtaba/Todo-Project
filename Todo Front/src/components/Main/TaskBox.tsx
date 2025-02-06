@@ -21,7 +21,7 @@ const TaskBox: React.FC<Todo> = ({
   uuid,
 }) => {
   const { removeTodo, setDone, setModal, setPinned } = useTodo();
-  const maxLength = 16;
+  const maxLength = 12;
   const length = subject.length > maxLength ? maxLength + 3 : subject.length;
   subject = subject.trim();
 
@@ -75,7 +75,7 @@ const TaskBox: React.FC<Todo> = ({
       </div>
       <div className="right">
         <span className="date">
-          {date.toLocaleDateString("en-US", { day: "numeric", month: "short" })}
+          {new Date(date).toLocaleDateString("en-US", { day: "numeric", month: "short" })}
         </span>
         <div className="operations">
           <div

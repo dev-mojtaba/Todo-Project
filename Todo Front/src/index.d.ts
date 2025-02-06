@@ -58,6 +58,8 @@ type CreateTaskModalProps =
 type TodoConfig = {
   /** Whether to use the database or not. */
   useDatabase: boolean;
+  /** The maximum number of attempts to connect to the database from API. */
+  maxDatabaseAttempts: number;
 };
 
 type TodoConfigOptional = Partial<TodoConfig>;
