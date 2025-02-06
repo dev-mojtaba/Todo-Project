@@ -16,6 +16,11 @@ router.get("/", async (req, res) => {
     }
 
     data = await TodoModel.findOne({ uuid });
+
+    if (!data) {
+      res.status(404).json({ message: "Todo not found" });
+      return;
+    }
   }
 
   res.status(200).json({ data });
