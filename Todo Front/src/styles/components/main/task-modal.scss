@@ -1,7 +1,7 @@
 main {
   .main__wrapper {
     .create-task__modal {
-      @apply fixed -top-full left-0 flex items-center justify-center w-screen h-screen bg-black/[0.01] dark:bg-white/[0.01] transition-[top,_backdrop-filter] ease-linear duration-300;
+      @apply fixed -top-full left-0 flex items-center justify-center w-screen h-screen bg-black/[0.01] dark:bg-white/[0.01] transition-[top,_backdrop-filter] ease-linear duration-300 z-50;
 
       &.active {
         @apply -top-0 backdrop-blur-xl;
