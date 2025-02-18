@@ -63,3 +63,7 @@ type TodoConfig = {
 };
 
 type TodoConfigOptional = Partial<TodoConfig>;
+
+type ClassNameProps = {
+  className?: string;
+};

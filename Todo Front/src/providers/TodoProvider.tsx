@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import config from "../config";
 import deleteTodo from "../services/deleteTodo";
 import updateTodo from "../services/updateTodo";
+import deleteTodos from "../services/deleteTodos";
 
 const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [todo, setTodo] = useState<Todo[]>([]);
@@ -69,8 +70,20 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
    * This is for later updates or i'll remove it.
    * Still not sure about it.
    */
-  const removeTodos = () => {
-    setTodo([]);
+  const removeTodos = async () => {
+    if (config.useDatabase) {
+      try {
+        await deleteTodos();
+        setTodo([]);
+        toast.success("Todos removed successfully", { theme: "dark" });
+      } catch (error) {
+        console.error("Error removing todos:", error);
+        toast.error("Failed to remove todos", { theme: "dark" });
+      }
+    } else {
+      setTodo([]);
+      toast.success("Todos removed successfully", { theme: "dark" });
+    }
   };
 
   /**

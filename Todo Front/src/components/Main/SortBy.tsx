@@ -15,22 +15,28 @@ const SortBy: React.FC = () => {
   };
 
   return (
-    <div className="sort-by__box">
-      <label htmlFor="sort-by">
-        Sort by:
-        <select
-          name="sort"
-          id="sort-by"
-          value={filter}
-          onChange={handleSortChange}
+    <div>
+      <form>
+        <label
+          htmlFor="sort-by"
+          className="flex items-center gap-1 text-xs 2xs:text-sm xs:text-base"
         >
-          <option value="default">Default</option>
-          <option value="priority">Priority</option>
-          <option value="createdAt">Created At</option>
-          <option value="edited">Edited</option>
-          <option value="completed">Completed</option>
-        </select>
-      </label>
+          Sort by:
+          <select
+            name="sort"
+            id="sort-by"
+            className="px-1 xs:px-2 py-0.5 xs:py-1 bg-primary-light dark:bg-primary-input text-center text-primary-input-text dark:text-primary-light rounded-lg cursor-pointer outline-none appearance-none"
+            value={filter}
+            onChange={handleSortChange}
+          >
+            <option value="default">Default</option>
+            <option value="priority">Priority</option>
+            <option value="createdAt">Created At</option>
+            <option value="edited">Edited</option>
+            <option value="completed">Completed</option>
+          </select>
+        </label>
+      </form>
     </div>
   );
 };
