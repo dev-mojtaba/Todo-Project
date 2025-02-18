@@ -1,5 +1,5 @@
 #root {
-  @apply h-fit text-secondaryDarkColor dark:text-primaryLightColor font-prr overflow-x-hidden select-none;
+  @apply h-fit text-secondary-dark dark:text-primary-light font-prr overflow-x-hidden select-none;
 
   .container {
     @apply px-5 sm:px-0;
@@ -12,32 +12,32 @@
   }
 
   .primary-cancel {
-    @apply bg-cancelButton;
+    @apply bg-cancel-button;
 
     &:hover {
-      @apply bg-cancelButtonHover;
+      @apply bg-cancel-button-hover;
     }
   }
 
   .secondary-btn {
-    @apply bg-secondaryButton;
+    @apply bg-secondary-button;
 
     &:hover {
-      @apply bg-secondaryButtonHover;
+      @apply bg-secondary-button-hover;
     }
   }
 
   .primary-btn {
-    @apply bg-primaryButton;
+    @apply bg-primary-button;
 
     &:hover {
-      @apply bg-primaryButtonHover;
+      @apply bg-primary-button-hover;
     }
   }
 }
 
 *::-webkit-scrollbar {
-  @apply w-2 bg-transparent dark:bg-primaryDarkColor;
+  @apply w-2 bg-transparent dark:bg-primary-dark;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -45,9 +45,9 @@
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  @apply bg-primaryDarkColor dark:bg-[#808080];
+  @apply bg-primary-dark dark:bg-[#808080];
 }
 
 *::-webkit-scrollbar-thumb:active {
-  @apply bg-secondaryDarkColor dark:bg-[#616161];
+  @apply bg-secondary-dark dark:bg-[#616161];
 }
