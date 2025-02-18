@@ -1,12 +1,16 @@
 import React from "react";
 
-const SearchIcon: React.FC = () => {
+type SearchIconProps = {
+  className?: string;
+};
+
+const SearchIcon: React.FC<SearchIconProps> = ({ className }) => {
   return (
     <svg
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      className="search-icon"
+      className={`search-icon${className !== undefined ? ` ${className}` : ""}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d="M11 20.75C5.62 20.75 1.25 16.38 1.25 11C1.25 5.62 5.62 1.25 11 1.25C16.38 1.25 20.75 5.62 20.75 11C20.75 16.38 16.38 20.75 11 20.75ZM11 2.75C6.45 2.75 2.75 6.45 2.75 11C2.75 15.55 6.45 19.25 11 19.25C15.55 19.25 19.25 15.55 19.25 11C19.25 6.45 15.55 2.75 11 2.75Z" />
