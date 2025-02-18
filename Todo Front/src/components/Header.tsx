@@ -3,11 +3,13 @@ import Logo from "./Icons/Logo";
 
 const Header: React.FC = () => {
   return (
-    <header>
-      <div className="logo__wrapper">
+    <header className="flex flex-col items-center justify-center gap-5 p-5 w-full bg-white dark:bg-secondary-dark">
+      <div className="p-4 bg-primary-dark dark:bg-transparent rounded-full">
         <Logo />
       </div>
-      <h3>Organize and complete your pending tasks easily!</h3>
+      <h3 className="text-center">
+        Organize and complete your pending tasks easily!
+      </h3>
     </header>
   );
 };
