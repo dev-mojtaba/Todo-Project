@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 @utility container {
-  margin-left: auto;
-  marging-right: auto;
+  margin-inline: auto;
 }
 
 @theme {
