@@ -28,13 +28,13 @@ const TaskList: React.FC = () => {
   return (
     <div className="relative flex items-center justify-center flex-col w-full h-80 overflow-y-visible">
       {total === 0 ? (
-        <div className="flex flex-col items-center w-full h-full">
+        <div className="flex flex-col items-center justify-center w-full h-full">
           <PlusIcon className="w-20 h-20 fill-transparent stroke-primary-dark dark:stroke-neutral-500" />
           <h5 className="font-bold">You have no pending tasks.</h5>
           <p className="text-sm">Create one to get started.</p>
         </div>
       ) : data.length === 0 ? (
-        <div className="flex flex-col items-center w-full h-full">
+        <div className="flex flex-col items-center justify-center w-full h-full">
           <NotFoundIcon className="w-20 h-20 fill-primary-dark dark:fill-neutral-500" />
           <h5 className="font-bold">No tasks found.</h5>
           <p className="text-sm">Try changing the filter or search term.</p>

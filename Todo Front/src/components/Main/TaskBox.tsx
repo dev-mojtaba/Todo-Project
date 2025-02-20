@@ -27,7 +27,7 @@ const TaskBox: React.FC<Todo> = ({
   return (
     <div
       className={
-        "relative flex items-center justify-between px-1 2xs:px-2 xs:px-3 sm:px-4 md:px-5 lg:px-6 py-4 w-[95%] h-fit bg-primary-light dark:bg-secondary-dark rounded-lg transition-[transform,_box-shadow,_filter] ease-linear duration-300 hover:forward-child-bluriness has-[+*:hover]:blur-[3px] has-[+*+*:hover]:blur-[4px] has-[+*+*+*:hover]:blur-[5px] has-[+*+*+*+*:hover]:blur-[6px] has-[+*+*+*+*+*:hover]:blur-[7px]" +
+        "relative flex items-center justify-between px-2 2xs:px-3 xs:px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-4 w-[95%] h-fit bg-primary-light dark:bg-secondary-dark rounded-lg transition-[transform,_box-shadow,_filter] ease-linear duration-300 hover:forward-child-bluriness has-[+*:hover]:blur-[3px] has-[+*+*:hover]:blur-[4px] has-[+*+*+*:hover]:blur-[5px] has-[+*+*+*+*:hover]:blur-[6px] has-[+*+*+*+*+*:hover]:blur-[7px]" +
         (isDone ? " animate-task-done" : "")
       }
       data-active={isDone}
@@ -57,7 +57,7 @@ const TaskBox: React.FC<Todo> = ({
         </div>
         <div
           className={
-            "relative flex items-center gap-1 w-fit h-fit transition-all after:content-[''] after:crossed-line" +
+            "relative flex items-center gap-1 w-fit h-fit transition-all after:crossed-line" +
             (isDone ? " crossed-subject" : "")
           }
           style={{ "--subject-words-length": length } as React.CSSProperties}
