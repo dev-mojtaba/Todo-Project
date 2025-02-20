@@ -31,4 +31,91 @@
   /* Screens (Breakpoints) */
   --breakpoint-xs: 30rem;
   --breakpoint-2xs: 22.5rem;
+
+  /* Animates */
+  --animate-task-done: task-done 1s ease-in-out 1;
+  --animate-tick: tick 1s ease-in-out 1 forwards;
+
+  @keyframes task-done {
+    0% {
+      box-shadow: var(--drop-shadow-md);
+      transform: translateY(0) scale(1);
+    }
+
+    85% {
+      box-shadow: var(--drop-shadow-md);
+      transform: translateY(6px) scale(102.5%);
+    }
+
+    90% {
+      box-shadow: var(--drop-shadow-md);
+      transform: translateY(0) scale(1);
+    }
+
+    95% {
+      box-shadow: var(--drop-shadow-md);
+      transform: translateY(2px) scale(100.5%);
+    }
+
+    100% {
+      box-shadow: var(--drop-shadow-none);
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes tick {
+    0% {
+      fill: transparent;
+      stroke-dashoffset: 50;
+    }
+
+    80% {
+      fill: transparent;
+    }
+
+    100% {
+      fill: light-dark(var(--color-primary-dark), var(--color-primary-light));
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+@utility forward-child-bluriness {
+  + * {
+    filter: blur(3px);
+  }
+
+  + * + * {
+    filter: blur(4px);
+  }
+
+  + * + * + * {
+    filter: blur(5px);
+  }
+
+  + * + * + * + * {
+    filter: blur(6px);
+  }
+
+  + * + * + * + * + * {
+    filter: blur(7px);
+  }
+}
+
+@utility tick-dash-offset-array {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+}
+
+@utility crossed-line {
+  position: absolute;
+  inset-block: calc(var(--spacing) * 0);
+  margin-block: auto;
+  height: fit-content;
+  border-bottom-width: 2px;
+  border-bottom-color: light-dark(
+    var(--color-primary-dark),
+    var(--color-primary-light)
+  );
+  transform: translateY(1px);
 }

@@ -67,3 +67,10 @@ type TodoConfigOptional = Partial<TodoConfig>;
 type ClassNameProps = {
   className?: string;
 };
+
+type Include<
+  O extends object,
+  K extends string,
+  T,
+  U extends boolean = false
+> = U extends true ? O & { [P in K]?: T } : O & { [P in K]: T };

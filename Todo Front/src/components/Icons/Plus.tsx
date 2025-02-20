@@ -1,12 +1,12 @@
 import React from "react";
 
-const PlusIcon: React.FC = () => {
+const PlusIcon: React.FC<ClassNameProps> = ({className}) => {
   return (
     <svg
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      className="plus-icon"
+      className={`plus-icon${className !== undefined ? ` ${className}` : ""}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

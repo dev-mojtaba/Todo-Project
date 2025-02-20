@@ -1,0 +1,21 @@
+@keyframes zero-to-hero {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.crossed-subject {
+  &::after {
+    animation: zero-to-hero calc(var(--subject-words-length, 12) * 0.05s) linear
+      1 forwards;
+  }
+}
+
+.typewritter {
+  animation: zero-to-hero calc(var(--subject-words-length, 12) * 0.05s)
+    steps(var(--subject-words-length, 12)) forwards;
+}
