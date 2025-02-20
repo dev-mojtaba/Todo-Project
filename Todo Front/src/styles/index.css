@@ -119,3 +119,17 @@
   );
   transform: translateY(1px);
 }
+
+@utility add-task {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 2px;
+  height: 16px;
+  background-color: light-dark(
+    var(--color-primary-dark),
+    var(--color-primary-light)
+  );
+  border-radius: var(--radius-sm);
+}

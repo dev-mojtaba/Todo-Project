@@ -5,8 +5,13 @@ const AddTaskButton: React.FC = () => {
   const { setModal } = useTodo();
 
   return (
-    <div className="add-task__box">
-      <div className="add" onClick={() => setModal([true, { editMode: false, examineMode: false }])}></div>
+    <div className="ml-auto cursor-pointer">
+      <div
+        className="relative flex items-center justify-center p-6 w-fit h-fit bg-primary rounded-full aspect-square after:add-task after:rotate-90 before:add-task"
+        onClick={() =>
+          setModal([true, { editMode: false, examineMode: false }])
+        }
+      ></div>
     </div>
   );
 };
