@@ -1,12 +1,12 @@
 {
   "name": "todo-back",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "scripts": {
     "dev": "nodemon",
     "build": "tsc"
   },
   "author": "MOJTABA5858",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "description": "Todo Project Backend made with ExpressJS, Mongoose and TypeScript with love by MOJTABA5858",
   "dependencies": {
