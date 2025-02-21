@@ -97,41 +97,45 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     uuid: string,
     changingData: Partial<Omit<Todo, "date" | "uuid">> = {}
   ) => {
+    const data = todo.find((t) => t.uuid === uuid);
+    if (!data) return;
+
+    const { isDone, isEdited, isPinned, subject } = data;
+    const final: Required<typeof changingData> = {
+      isDone: changingData.isDone !== undefined ? changingData.isDone : isDone,
+      isEdited:
+        changingData.isEdited !== undefined ? changingData.isEdited : isEdited,
+      isPinned:
+        changingData.isPinned !== undefined ? changingData.isPinned : isPinned,
+      subject:
+        changingData.subject !== undefined ? changingData.subject : subject,
+    };
+
     if (config.useDatabase) {
-      const data = todo.find((t) => t.uuid === uuid);
-      if (!data) return;
-      const { isDone, isEdited, isPinned, subject } = data;
-      updateTodo(uuid, {
-        isDone:
-          changingData.isDone !== undefined ? changingData.isDone : isDone,
-        isEdited:
-          changingData.isEdited !== undefined
-            ? changingData.isEdited
-            : isEdited,
-        isPinned:
-          changingData.isPinned !== undefined
-            ? changingData.isPinned
-            : isPinned,
-        subject:
-          changingData.subject !== undefined ? changingData.subject : subject,
-      });
+      try {
+        await updateTodo(uuid, final);
+        setTodo((todo) =>
+          todo.map((t) => (t.uuid === uuid ? { ...t, ...final } : t))
+        );
+      } catch (error) {
+        console.error("Error updating todo:", error);
+        toast.error("Failed to update todo", { theme: "dark" });
+      }
+    } else {
+      setTodo((todo) =>
+        todo.map((t) => (t.uuid === uuid ? { ...t, ...final } : t))
+      );
     }
   };
 
   const setDone = async (uuid: string) => {
     const todoItem = todo.find((t) => t.uuid === uuid);
 
-    if (!todoItem) {
-      console.error("Todo item not found");
-      return;
-    }
+    if (!todoItem) return;
 
     if (config.useDatabase) {
       try {
         await update(uuid, { isDone: !todoItem.isDone });
-        setTodo((todo) =>
-          todo.map((t) => (t.uuid === uuid ? { ...t, isDone: !t.isDone } : t))
-        );
         if (!todoItem.isDone) {
           toast.success("Todo marked as done successfully", { theme: "dark" });
         }
@@ -153,11 +157,6 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     if (config.useDatabase) {
       try {
         await update(uuid, { subject, isEdited: true });
-        setTodo((todo) =>
-          todo.map((t) =>
-            t.uuid === uuid ? { ...t, isEdited: true, subject } : t
-          )
-        );
       } catch (error) {
         console.error("Error updating todo:", error);
         toast.error("Failed to update todo", { theme: "dark" });
@@ -168,8 +167,8 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
           t.uuid === uuid ? { ...t, isEdited: true, subject } : t
         )
       );
+      toast.success("Todo edited successfully", { theme: "dark" });
     }
-    toast.success("Todo edited successfully", { theme: "dark" });
   };
 
   const setPinned = async (uuid: string) => {
@@ -183,11 +182,6 @@ const TodoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     if (config.useDatabase) {
       try {
         await update(uuid, { isPinned: !todoItem.isPinned });
-        setTodo((todo) =>
-          todo.map((t) =>
-            t.uuid === uuid ? { ...t, isPinned: !todoItem.isPinned } : t
-          )
-        );
         if (!todoItem.isPinned) {
           toast.success("Todo pinned successfully", { theme: "dark" });
         } else {
